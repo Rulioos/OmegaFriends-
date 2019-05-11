@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Calendar</title>
+		<link rel="stylesheet" type="text/css" href="calendar.css">
+	</head>
+	
+	<body onload="setCalendar()">
+		
+		<div id="calendar_div">
+			<div class="month">      
+		  <ul>
+		    <li class="prev" onclick='previoustMonth(document.getElementById("calendar_month").innerHTML ,document.getElementById("calendar_year").innerHTML)' >&#10094;</li>
+		    <li class="next" onclick='nextMonth(document.getElementById("calendar_month").innerHTML ,document.getElementById("calendar_year").innerHTML)'>&#10095;</li>
+		    <li id="calendar_month"><span style="font-size:18px ;color: white"></span></li>
+		  </ul>
+		  
+		  <ul>
+		  	<li id="calendar_year"><span style="font-size:18px ;color: white"></span></li>
+		  </ul>
+		</div>
+		
+		<ul class="weekdays">
+		  <li>Mo</li>
+		  <li>Tu</li>
+		  <li>We</li>
+		  <li>Th</li>
+		  <li>Fr</li>
+		  <li>Sa</li>
+		  <li>Su</li>
+		</ul>
+		
+		<ul id= "calendar_days" class="days">  
+		</ul>
+		</div>		
+		
+		
+		<dialog id="favDialog">
+			<header id="date">
+				<p id="jour">yyyy</p>
+			</header>
+			
+			<ul id="list_event">
+				<li>fzefz</li>
+				<li>fzefz</li>
+				<li>fzefz</li>
+				<li>fzefz</li>
+				<li>fzefz</li>
+				<li>fzefz</li>
+				<li>fzefz</li>
+				<li>fzefz</li>
+				<li>fzefz</li>
+				<li>fzefz</li>
+				<li>fzefz</li>
+				<li>fzefz</li>
+			</ul>
+			
+			<button id="close" onclick="closeDay()">close</button>
+		</dialog>
+
+
+	</body>
+	
+	
+	<script type="text/javascript">
+	
+		function setCalendar(){
+			var monthList = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+			var date = new Date();
+			
+			document.getElementById("calendar_month").innerHTML = monthList[date.getMonth()];
+			document.getElementById("calendar_year").innerHTML =  date.getFullYear();
+
+			getDaysInMonth(date.getMonth(), date.getFullYear());
+		}
+		
+		function nextMonth(current_month, current_year){
+			var monthList = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+			var date = new Date();
+			
+			var next_month_num = 0;
+			var year_to_display = current_year;
+
+			for (i = 0; i <= 11; i++){
+				if (current_month == monthList[i] && current_month!= "Décembre"){
+					next_month_num = i + 1;
+				}
+				
+				if(current_month == "Décembre"){
+					next_month_num = 0;
+					year_to_display = parseInt(current_year, 10) + 1
+
+					document.getElementById("calendar_year").innerHTML =  year_to_display;
+				}
+			}	
+			document.getElementById("calendar_month").innerHTML = monthList[next_month_num];
+			
+			getDaysInMonth(next_month_num, year_to_display)
+		}
+		
+		function previoustMonth(current_month, current_year){
+			var monthList = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+			var date = new Date();
+			
+			var next_month_num = 0;
+			var year_to_display = current_year;
+			
+			for (i = 0; i <= 11; i++){
+				if (current_month == monthList[i] && current_month!= "Janvier"){
+					next_month_num = i - 1;
+				}
+				
+				if(current_month == "Janvier"){
+					next_month_num = 11;
+					year_to_display = parseInt(current_year, 10) - 1
+					document.getElementById("calendar_year").innerHTML = year_to_display ;
+				}
+			}
+			document.getElementById("calendar_month").innerHTML = monthList[next_month_num];
+			
+			getDaysInMonth(next_month_num, year_to_display)
+		}
+		
+		function getDaysInMonth(month, year) {
+		     var date = new Date(year, month, 1);
+		     var days = [];
+		     
+		     document.getElementById("calendar_days").innerHTML = "";
+		     
+		     while (date.getMonth() === month) {
+		        days.push(new Date(date));
+		        date.setDate(date.getDate() + 1);
+		     }
+		     
+		     var first_day = days[0].getDay();
+		     
+			
+			switch (first_day) {
+			case 0:
+			     for(i = 0; i < 6; i++){
+				     var ul = document.getElementById("calendar_days");
+				     var li = document.createElement("li");
+				     li.appendChild(document.createTextNode(""));
+				     ul.appendChild(li);
+			     }
+				break;
+
+			default:
+			     for(i = 0; i < first_day-1; i++){
+				     var ul = document.getElementById("calendar_days");
+				     var li = document.createElement("li");
+				     li.appendChild(document.createTextNode(""));
+				     ul.appendChild(li);
+			     }
+				break;
+			}
+					
+		     for(i = 0; i < days.length; i++){
+			     var ul = document.getElementById("calendar_days");
+			     var li = document.createElement("li");
+			     li.appendChild(document.createTextNode(days[i].getDate()));
+			     li.setAttribute("onclick", "showDay"+"("+ days[i].getDate() + ")"); 
+			     ul.appendChild(li);
+		     }
+		}
+		
+		
+		function showDay(day) {
+			var favDialog = document.getElementById('favDialog');
+			document.getElementById('jour').innerHTML = day + "/" + document.getElementById("calendar_month").innerHTML + "/" + document.getElementById("calendar_year").innerHTML;
+			
+			favDialog.showModal();
+			
+		}
+		
+		function closeDay() {
+			var favDialog = document.getElementById('favDialog');
+			favDialog.close();
+		}
+
+
+	</script>
+</html>
