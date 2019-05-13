@@ -3,7 +3,6 @@ package Model;
 public class User {
 	private String name; // person's name
 	private String surname; //person's surname
-	private UserType userType;
 	private String email;// person's email
 	private String phone;// person's phone
 	private String birthDate;// person's birthdate
