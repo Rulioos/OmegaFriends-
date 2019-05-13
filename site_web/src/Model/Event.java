@@ -8,11 +8,11 @@ public class Event {
 	 * Localization may become an object on his own.
 	 */
 	private double price; //price of event
-	private Person creator; //who created the event
+	private User creator; //who created the event
 	
 	
 	//Constructor
-	public Event(String name, String date, String localization, double price, Person creator) {
+	public Event(String name, String date, String localization, double price, User creator) {
 		super();
 		this.name = name;
 		this.date = date;
@@ -28,10 +28,10 @@ public class Event {
 	public void setLocalization(String localization) {
 		this.localization = localization;
 	}
-	public Person getCreator() {
+	public User getCreator() {
 		return creator;
 	}
-	public void setCreator(Person creator) {
+	public void setCreator(User creator) {
 		this.creator = creator;
 	}
 	public String getName() {

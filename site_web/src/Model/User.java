@@ -1,14 +1,15 @@
 package Model;
 
-public class Person {
+public class User {
 	private String name; // person's name
 	private String surname; //person's surname
+	private UserType userType;
 	private String email;// person's email
 	private String phone;// person's phone
 	private String birthDate;// person's birthdate
 	
 	//Constructor
-	public Person(String name, String surname, String email, String phone, String birthDate) {
+	public User(String name, String surname, String email, String phone, String birthDate) {
 		super();
 		this.name = name;
 		this.surname = surname;
