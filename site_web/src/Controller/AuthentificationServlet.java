@@ -1,11 +1,15 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Authentification;
 
 /**
  * Servlet implementation class Authentification
@@ -26,8 +30,18 @@ public class AuthentificationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		boolean success=Authentification.auhtenticate(request.getParameter("email"), 
+				request.getParameter("password")
+				);
+		if (success) {
+			request.getRequestDispatcher("/calendar.html").forward(request, response);
+		}else {
+			PrintWriter out = response.getWriter();
+			out.println("<h2 color='red'>Error in the login or password</h2>");
+			request.getRequestDispatcher("/connexion.html").forward(request, response);
+		}
+		
+		
 	}
 
 	/**
