@@ -14,7 +14,9 @@ public class User {
 	private String email;// person's email
 	private String phone;// person's phone
 	private String birthDate;// person's birthdate
-	
+	public User() {
+		//do nothing
+	}
 	public User(String password, String name, String surname, String email,
 			String birthDate) {
 		super();
