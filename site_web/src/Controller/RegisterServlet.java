@@ -17,48 +17,49 @@ import model.Register;
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public RegisterServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String pwd=request.getParameter("password");
-		String pwd_confirm=request.getParameter("password_confirm");
-		String name=request.getParameter("name");
-		String surname=request.getParameter("surname");
-		String email=request.getParameter("email");
-		String birthdate=request.getParameter("birth_date");
-		
-		boolean success=Register.register_user( email, name, birthdate, surname, pwd, pwd_confirm
-				);
-		
-		if(success) {
+		String pwd = request.getParameter("password");
+		String pwd_confirm = request.getParameter("password_confirm");
+		String name = request.getParameter("name");
+		String surname = request.getParameter("surname");
+		String email = request.getParameter("email");
+		String birthdate = request.getParameter("birth_date");
+		boolean success = Register.register_user(email, name, birthdate, surname, pwd, pwd_confirm);
+
+		if (success) {
 			request.getRequestDispatcher("/connexion.html").forward(request, response);
-		}else {
+		} else {
 
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			out.println("<h2>Account with such an emal already exists</h2>");
-			request.getRequestDispatcher("/inscription.html").forward(request, response);
+			request.getRequestDispatcher("/inscription.html").forward(null, null);
 		}
-				
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		doGet(request,response);
 
+	}
 }
