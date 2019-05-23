@@ -12,5 +12,9 @@ public class Database {
 
 	static MongoClient mongoClient = new MongoClient("localhost",27017);
 	final static Datastore datastore = morphia.createDatastore(mongoClient, "omega");
+	
+	public static User findUserByEmail(String email) {
+		return datastore.createQuery(User.class).field("email").equal(email).first();
+	}
 
 }

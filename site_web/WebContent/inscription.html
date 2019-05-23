@@ -9,12 +9,15 @@
 	<body>
 		
 		<div id="formulaire">
-			<form action="/action_page.php">
-		
-				<input type="text" name="email" placeholder="Email" class="input_data">
-				<input type="password" name="password"  placeholder="Password" class="input_data">
-				<input type="password" name="password_confirm" placeholder="Confirm password" type="password" class="input_data">
-				<input type="text" name="user_name" placeholder="User name" class="input_data">
+			<form method="POST" action="/site_web//RegisterServlet">
+				
+				<input type="text" name="name" placeholder="Name" class="input_data" required>
+				<input type="text" name="surname" placeholder="Surname" class="input_data" required>
+				<input type="text" name="email" placeholder="Email" class="input_data" required>
+				<input type="date" name="birth_date" placeholder="Birth date" class="input_data" required>
+				<input type="password" name="password"  placeholder="Password" class="input_data" required>
+				<input type="password" name="password_confirm" placeholder="Confirm password" type="password" class="input_data" required>
+				
 				<br><br>
 				<input type="submit" value="Sign up" id="signup">
 			
