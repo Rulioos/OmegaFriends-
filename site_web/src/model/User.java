@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.types.ObjectId;
 
 import dev.morphia.annotations.*;
@@ -14,6 +17,8 @@ public class User {
 	private String email;// person's email
 	private String phone;// person's phone
 	private String birthDate;// person's birthdate
+	private List<Group> groups=new ArrayList<>();//person's groups
+	private List<String> interests=new ArrayList<>();;//person's interests
 	public User() {
 		//do nothing
 	}
@@ -26,7 +31,21 @@ public class User {
 		this.email = email;
 		this.birthDate = birthDate;
 	}
+	
+	
 
+	public List<Group> getGroups() {
+		return groups;
+	}
+	public void setGroups(List<Group> groups) {
+		this.groups = groups;
+	}
+	public List<String> getInterests() {
+		return interests;
+	}
+	public void setInterests(List<String> interests) {
+		this.interests = interests;
+	}
 	public ObjectId getId() {
 		return id;
 	}

@@ -1,3 +1,4 @@
+
 html{
 	background-image:url("images/background_inscription.png");
 	background-repeat: no-repeat;
@@ -7,9 +8,16 @@ html{
     margin: 0;
     padding: 0;
 }
+/* Style the form */
+#register_user  {
+	margin-left: 40%;
+	margin-top: 15%;
+	
+}
 
-.input_data{
-  /*attribut du boutton  */
+/* Style the input fields */
+input {
+/*attribut du boutton  */
   border-style: solid;
   border-color: #707070;
   color: black;
@@ -25,26 +33,67 @@ html{
   display: block;
 }
 
-#signup{
-	background-color: #15826C;
-	color: #FFFFFF;
-	 
-	border: none;
-	width: 375px;
-	height : auto;
-	padding : 10px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 30px;
-	border-radius: 25px;
-	
-	margin-top : 30px;
-	margin-bottom : 10px;
-	display: block;
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
 }
 
-#formulaire{
-	margin-left:40%;
-	margin-top: 15%;
+button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+ 
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+.section{
+	font-weight:bold;
+	font-family:serif;
+	margin-left:12%;
+  color: black;
+  width: 350px;
+  height : auto;
+  font-size: 30px;
+
+
+  display: block;
+	
+}
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none; 
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.6;
+  text-align:center;
+  vertical-align:middle;
+}
+
+/* Mark the active step: */
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
 }

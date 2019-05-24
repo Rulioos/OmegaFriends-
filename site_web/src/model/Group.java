@@ -13,15 +13,15 @@ public class Group {
 	private ObjectId id;
 	private String name; // name of group
 	private User owner;// owner of the group
-	private List<User> personList; // list of persons
-	private List<String> interests;//
+	private List<User> members; // list of persons
+	private List<String> interests;//Interests
 
 	// Constructors
 	public Group(String name, User owner) {
 		super();
 		this.name = name;
 		this.owner = owner;
-		this.personList = new ArrayList<>();
+		this.members = new ArrayList<>();
 		this.interests = new ArrayList<>();
 	}
 
@@ -35,8 +35,8 @@ public class Group {
 		
 		User user = Database.findUserByEmail(email);
 		if (user != null) {
-			if (personList.stream().filter(k -> k.equals(user)).findFirst().orElse(null) == null) {
-				personList.add(user);
+			if (members.stream().filter(k -> k.equals(user)).findFirst().orElse(null) == null) {
+				members.add(user);
 				return true;
 			}
 		}
@@ -48,9 +48,9 @@ public class Group {
 		if (!member.equals(owner)) {
 			return false;
 		}
-		User user = personList.stream().filter(k -> k.getEmail().equals(email)).findFirst().orElse(null);
+		User user = members.stream().filter(k -> k.getEmail().equals(email)).findFirst().orElse(null);
 		if (user != null) {
-			personList.remove(user);
+			members.remove(user);
 			return true;
 		}
 		return false;
@@ -94,12 +94,12 @@ public class Group {
 		this.owner = owner;
 	}
 
-	public List<User> getPersonList() {
-		return personList;
+	public List<User> getmembers() {
+		return members;
 	}
 
-	public void setPersonList(List<User> personList) {
-		this.personList = personList;
+	public void setmembers(List<User> members) {
+		this.members = members;
 	}
 
 	public List<String> getInterests() {
