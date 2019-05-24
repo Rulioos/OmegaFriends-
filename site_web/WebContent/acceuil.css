@@ -36,7 +36,22 @@ header{
 	filter: alpha(opacity=0);
 }
 
-.reco{
-	width:100px;
+
+table{
 	border:1px solid black;
+	border-color:black;
+}
+td{
+	border:1px solid black;
+}
+
+footer {
+  width: 100%;
+  margin:  0;
+  height: 70px;
+  background-color: #999;
+  position: fixed;
+  bottom:0;
+  left:0; 
+ 
 }
