@@ -47,7 +47,7 @@ public class RegisterServlet extends HttpServlet {
 
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			request.getRequestDispatcher("/inscription.html").forward(null, null);
+			request.getRequestDispatcher("/inscription.html").forward(request, response);
 		}
 
 	}

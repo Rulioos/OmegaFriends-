@@ -9,7 +9,9 @@ html{
 }
 
 
-
+.contain{
+	display:inline-block;
+}
 
 table{
 	border:1px solid black;

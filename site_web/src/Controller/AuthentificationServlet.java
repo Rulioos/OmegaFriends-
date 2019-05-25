@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Authentification;
+import model.Database;
 
 /**
  * Servlet implementation class Authentification
@@ -30,12 +32,15 @@ public class AuthentificationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		boolean success=Authentification.auhtenticate(request.getParameter("email"), 
 				request.getParameter("password")
 				);
 		if (success) {
-			request.getRequestDispatcher("/calendar.html").forward(request, response);
+			HttpSession session = request.getSession(true);
+			//set attribute user to session
+			session.setAttribute("user",Database.findUserByEmail(request.getParameter("email")));
+			request.getRequestDispatcher("/acceuil.jsp").forward(request, response);
+			
 		}else {
 			PrintWriter out = response.getWriter();
 			out.println("<h2 color='red'>Error in the login or password</h2>");

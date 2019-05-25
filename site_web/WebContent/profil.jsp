@@ -14,6 +14,14 @@
 		$("footer").load("footer.html");
 	});
 </script>
+<%
+    session=request.getSession(false);
+    if(session.getAttribute("user")==null)
+    {
+        response.sendRedirect("connexion.html");
+    }
+
+%> 
 
 </head>
 <body>

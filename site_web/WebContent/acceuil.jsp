@@ -17,6 +17,14 @@
 </script>
 <title>Acceuil</title>
 </head>
+<%
+    session=request.getSession(false);
+    if(session.getAttribute("user")==null)
+    {
+        response.sendRedirect("connexion.html");
+    }
+
+%> 
 <body>
 	<header></header>
 	<input type="search" id="site-search" name="q"
@@ -26,7 +34,8 @@
 		<i class="fas fa-search"></i>
 	</button>
 
-	<table>
+	<div class="contain">
+	<table id="groups">
 		<tr>
 			<th>Prénom</th>
 			<th>Nom</th>
@@ -40,7 +49,22 @@
 			<td>Patulacci</td>
 		</tr>
 	</table>
-
+		<table id="events">
+		<tr>
+			<th>Prénom</th>
+			<th>Nom</th>
+		</tr>
+		<tr>
+			<td>Jean</td>
+			<td>Biche</td>
+		</tr>
+		<tr>
+			<td>Marcel</td>
+			<td>Patulacci</td>
+		</tr>
+	</table>
+	
+	</div>
 	<footer> </footer>
 </body>
 </html>
