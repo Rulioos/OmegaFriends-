@@ -8,6 +8,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous">
+	
 </script>
 <script>
 	$(function() {
@@ -17,14 +18,14 @@
 </script>
 <title>Acceuil</title>
 </head>
+<%@ page import="model.User"%>
+<%@ page import="java.io.*"%>
 <%
-    session=request.getSession(false);
-    if(session.getAttribute("user")==null)
-    {
-        response.sendRedirect("connexion.html");
-    }
-
-%> 
+	session = request.getSession(false);
+	if (session.getAttribute("user") == null) {
+		response.sendRedirect("connexion.html");
+	}
+%>
 <body>
 	<header></header>
 	<input type="search" id="site-search" name="q"
@@ -34,37 +35,22 @@
 		<i class="fas fa-search"></i>
 	</button>
 
-	<div class="contain">
-	<table id="groups">
-		<tr>
-			<th>Prénom</th>
-			<th>Nom</th>
-		</tr>
-		<tr>
-			<td>Jean</td>
-			<td>Biche</td>
-		</tr>
-		<tr>
-			<td>Marcel</td>
-			<td>Patulacci</td>
-		</tr>
-	</table>
-		<table id="events">
-		<tr>
-			<th>Prénom</th>
-			<th>Nom</th>
-		</tr>
-		<tr>
-			<td>Jean</td>
-			<td>Biche</td>
-		</tr>
-		<tr>
-			<td>Marcel</td>
-			<td>Patulacci</td>
-		</tr>
-	</table>
-	
-	</div>
+	<!-- Groups and events-->
+	<div class="groups"></div>
+	<%
+		User user = (User) session.getAttribute("user");
+	/*
+		out.println("<a href='acceuil.jsp'>" + user.getEmail() + "</a>");
+		user.getGroups().stream().forEach(k -> {
+			try {
+				out.println(k.getName());
+			} catch (IOException ie) {
+				//
+			}
+		});
+	*/
+	%>
+	<div class="events"></div>
 	<footer> </footer>
 </body>
 </html>

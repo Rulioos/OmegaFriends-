@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Authentification;
 import model.Database;
+import model.User;
 
 /**
  * Servlet implementation class Authentification
@@ -38,6 +39,7 @@ public class AuthentificationServlet extends HttpServlet {
 		if (success) {
 			HttpSession session = request.getSession(true);
 			//set attribute user to session
+			User user=Database.findUserByEmail(request.getParameter("email"));
 			session.setAttribute("user",Database.findUserByEmail(request.getParameter("email")));
 			request.getRequestDispatcher("/acceuil.jsp").forward(request, response);
 			

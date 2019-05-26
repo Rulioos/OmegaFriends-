@@ -9,15 +9,3 @@ html{
 }
 
 
-.contain{
-	display:inline-block;
-}
-
-table{
-	border:1px solid black;
-	border-color:black;
-}
-td{
-	border:1px solid black;
-}
-
