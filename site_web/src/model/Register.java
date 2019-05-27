@@ -1,4 +1,6 @@
 package model;
+import java.util.List;
+
 import org.apache.commons.codec.digest.Crypt;
 
 public class Register {
@@ -23,5 +25,19 @@ public class Register {
 
 	}
 	
+	
+	public static boolean register_group(String name,User owner,List<String> interests) {
+		Group g=new Group(name, owner);
+		owner.getGroups().add(g);
+		//interests.forEach(k->g.AddInterest(k, owner));
+		
+		//Database.updateUser(owner, "groups",owner.getGroups(),owner.getPassword());
+		Database.datastore.save(g);
+		return true;
+	}
+	
+	public static boolean register_event() {
+		return false;
+	}
 	
 }

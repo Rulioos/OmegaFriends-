@@ -20,13 +20,6 @@ public class Database {
 		return datastore.createQuery(User.class).field("email").equal(email).first();
 	}
 	
-	public static Query<User> createQuery(String email){
-		return datastore.createQuery(User.class).field("email").equal(email);
-	}
-	
-	public static UpdateOperations<User> createOps(String field,Object value) {
-		return datastore.createUpdateOperations(User.class).set(field, value);
-	}
 	
 	public static boolean updateUser(User user,String field,Object value,String password) {
 		Query<User> q=datastore.createQuery(User.class).field("email").equal(user.getEmail());

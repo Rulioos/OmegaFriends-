@@ -12,7 +12,9 @@ public class Group {
 	@Id
 	private ObjectId id;
 	private String name; // name of group
+	@Reference
 	private User owner;// owner of the group
+	@Embedded
 	private List<User> members; // list of persons
 	private List<String> interests;//Interests
 
@@ -22,6 +24,7 @@ public class Group {
 		this.name = name;
 		this.owner = owner;
 		this.members = new ArrayList<>();
+		this.members.add(owner);
 		this.interests = new ArrayList<>();
 	}
 

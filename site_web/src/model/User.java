@@ -17,7 +17,9 @@ public class User {
 	private String email;// person's email
 	private String phone;// person's phone
 	private String birthDate;// person's birthdate
+	@Embedded
 	private List<Group> groups=new ArrayList<>();//person's groups
+	@Embedded
 	private List<String> interests=new ArrayList<>();;//person's interests
 	public User() {
 		//do nothing
