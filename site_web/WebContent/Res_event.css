@@ -1,4 +1,6 @@
-body {font-family: Verdana, sans-serif;}
+body{
+	font-family: Verdana, sans-serif;
+}
 html{
 	background-image:url("images/emploiDuTemps.png");
 	background-repeat: no-repeat;
@@ -10,8 +12,27 @@ html{
 }
 
 #event{
-  	margin-left: 30%;
-  	margin-right: 20%;
+/*   	margin-left: 17%; */
+/*   	margin-right: 20%; */
+/*   	margin-top: 1%; */
+  	margin-right: 10%;
   	margin-top: 10%;
   	
+}
+
+#calendar_ul{
+	width: 100%;
+}
+
+li{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.busy{
+	background-color: #FAA32E;
+}
+
+.free{
+	background-color: #1abc9c;
 }

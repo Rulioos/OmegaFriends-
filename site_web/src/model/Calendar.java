@@ -14,9 +14,11 @@ import jdk.nashorn.internal.ir.RuntimeNode.Request;
 public class Calendar {
 	
 	private ArrayList<VkEvent>list_event;
+	private String hyperplanningURL;
 	
-	public Calendar() {
+	public Calendar(String hyperplanningURL) {
 		this.list_event = new ArrayList<>();
+		this.hyperplanningURL = hyperplanningURL;
 	}
 	
 	public ArrayList<VkEvent> getALLEvent() {
@@ -26,7 +28,7 @@ public class Calendar {
 	        String SUMMARY = "";
 	        try {
 
-	            URL url = new URL("http://planning.isep.fr/Telechargements/ical/Edt_SUY_9477.ics?version=2018.0.3.1&idICal=3D2DE3F6B201737AC71B429FB754BA12&param=643d5b312e2e36325d2666683d3126663d31");
+	            URL url = new URL(this.hyperplanningURL);
 
 	            // read text returned by server
 	            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));

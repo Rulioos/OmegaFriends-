@@ -91,9 +91,14 @@ public class CalendarServlet extends HttpServlet {
         date = date_format[0]+"/"+date_format[1]+"/"+date_format[2];
 		System.out.println(date);
 		
-		Calendar cal = new Calendar();
-		 ArrayList<VkEvent> events =  cal.getEventOfTheDay(date);
-		request.setAttribute("calendar", events);
+		Calendar cal = new Calendar("http://planning.isep.fr/Telechargements/ical/Edt_SUY_9477.ics?version=2018.0.3.1&idICal=3D2DE3F6B201737AC71B429FB754BA12&param=643d5b312e2e36325d2666683d3126663d31");
+		Calendar cal2 = new Calendar("http://planning.isep.fr/Telechargements/ical/Edt_AUBIER_10821.ics?version=2018.0.3.1&idICal=9C07A6222CC71B1BCDE2C53EEEF06399&param=643d5b312e2e36325d2666683d3126663d31");
+		
+		ArrayList<VkEvent> events1 =  cal.getEventOfTheDay(date);
+		ArrayList<VkEvent> events2 =  cal2.getEventOfTheDay(date);
+
+		request.setAttribute("calendar", events1);
+		request.setAttribute("calendarToCompare", events2);
 		
 		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/Res_events.jsp");
 		dispatcher.include(request, response);
