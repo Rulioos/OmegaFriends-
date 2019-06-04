@@ -15,27 +15,22 @@ import model.DataFowarder;
 import model.VkEvent;
 
 /**
- * Servlet implementation class CalendarServlet
+ * Servlet implementation class CompareCalendarServlet
  */
-@WebServlet("/CalendarServlet")
-public class CalendarServlet extends HttpServlet {
+@WebServlet("/CompareCalendarServlet")
+public class CompareCalendarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CalendarServlet() {
-        super();
-    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		System.out.println("Servlet activated");
-		String date = (String) request.getParameter("selected");
-        String[] date_format = date.split("/");
+		System.out.println("comparaison lancée -------");
+		String date = (String) request.getParameter("comparaison");	
+		String[] d = date.split(" ");
+        String[] date_format = d[2].split("/");
         
         switch (date_format[1]){
         case "Janvier":
@@ -90,17 +85,15 @@ public class CalendarServlet extends HttpServlet {
         }
         
         date = date_format[0]+"/"+date_format[1]+"/"+date_format[2];
-//		System.out.println(date);
+		System.out.println(date);
 		
 		Calendar cal = new Calendar("http://planning.isep.fr/Telechargements/ical/Edt_SUY_9477.ics?version=2018.0.3.1&idICal=3D2DE3F6B201737AC71B429FB754BA12&param=643d5b312e2e36325d2666683d3126663d31");
+		DataFowarder commonFreeTime =  cal.getComparedFreeTime(date);
 		
-		ArrayList<VkEvent> events1 =  cal.getEventOfTheDay(date);
+		request.setAttribute("toReceived", commonFreeTime);
+
 		
-		DataFowarder toForward = new DataFowarder(date, events1);
-		
-		request.setAttribute("toReceived", toForward);
-		
-		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/Res_events.jsp");
+		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/Res_comparator_cal.jsp");
 		dispatcher.include(request, response);
 	}
 

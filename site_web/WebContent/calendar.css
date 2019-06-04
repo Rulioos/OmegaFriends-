@@ -39,11 +39,13 @@ html{
 .month .prev {
   float: left;
   padding-top: 10px;
+  cursor: pointer;
 }
 
 .month .next {
   float: right;
   padding-top: 10px;
+  cursor: pointer;
 }
 
 .weekdays {

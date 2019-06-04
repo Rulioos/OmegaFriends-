@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.VkEvent"%>
 <%@page import="model.Calendar"%>
+<%@page import="model.DataFowarder"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -16,17 +17,24 @@
 		<div id="event">
 			<ul id="calendar_ul">
 			</ul>
+			
+			<form action="/site_web//CompareCalendarServlet" method="POST">
+				<input id="input" type="submit" name="comparaison">
+			</form>
 		</div>
 	</body>	
 </html>
 
 
 	<script type="text/javascript">
-	<% ArrayList<VkEvent> cal = (ArrayList<VkEvent>) request.getAttribute("calendar"); %>
-	<% ArrayList<VkEvent> calToCompare = (ArrayList<VkEvent>) request.getAttribute("calendarToCompare"); %>
+
 	
 	function setEvent(){
 		var ul = document.getElementById("calendar_ul");
+		
+		<% DataFowarder toReceived = (DataFowarder) request.getAttribute("toReceived");
+		ArrayList<VkEvent> cal = (ArrayList<VkEvent>) toReceived.getEvents();
+		String selected_date = (String) toReceived.getDate(); %>
 		
 		<% 
 		  String s = "";
@@ -109,6 +117,8 @@
 
 
 		}
+		document.getElementById("input").setAttribute("value", "Compare for " + "<%= selected_date %>");
+
 	}
 	
 	</script>

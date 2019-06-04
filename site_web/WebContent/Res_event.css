@@ -20,6 +20,7 @@ html{
   	
 }
 
+
 #calendar_ul{
 	width: 100%;
 }
@@ -35,4 +36,15 @@ li{
 
 .free{
 	background-color: #1abc9c;
+}
+
+input{
+  width: 30%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin-left:40%;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer
 }

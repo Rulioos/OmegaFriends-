@@ -60,12 +60,12 @@
 			var next_month_num = 0;
 			var year_to_display = current_year;
 
-			for (i = 0; i <= 11; i++){
-				if (current_month == monthList[i] && current_month!= "D�cembre"){
+			for (i = 0; i <= 10; i++){
+				if (current_month == monthList[i] && current_month!= "Decembre"){
 					next_month_num = i + 1;
 				}
 
-				if(current_month == "D�cembre"){
+				if(current_month == "Decembre"){
 					next_month_num = 0;
 					year_to_display = parseInt(current_year, 10) + 1
 
