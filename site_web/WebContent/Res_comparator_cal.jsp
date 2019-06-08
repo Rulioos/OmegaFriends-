@@ -104,12 +104,23 @@ function setEvent(){
 				var t1 = parseInt(list_debut[i].substring(0,2),10);
 				var t2 = parseInt(list_fin[i].substring(0,2),10);
 				
-				while(t1 < t2){
-					var lical1 = document.createElement("li");
-					t1 = t1+1;
-					lical1.appendChild(document.createTextNode(t1 + ":00:00" +"  busy"));
-					lical1.setAttribute("class", "busy");
-					ul1.appendChild(lical1);
+				if(list_event_names[i] == "free time"){
+					while(t1 < t2){
+						var lical1 = document.createElement("li");
+						t1 = t1+1;
+						lical1.appendChild(document.createTextNode(t1 + ":00:00" +"  free"));
+						lical1.setAttribute("class", "commonFreeTime");
+						ul1.appendChild(lical1);
+					}
+				}
+				else{
+					while(t1 < t2){
+						var lical1 = document.createElement("li");
+						t1 = t1+1;
+						lical1.appendChild(document.createTextNode(t1 + ":00:00" +"  busy"));
+						lical1.setAttribute("class", "busy");
+						ul1.appendChild(lical1);
+					}	
 				}
 			}
 	  }
@@ -145,12 +156,23 @@ function setEvent(){
 				var t1 = parseInt(list_debut2[i].substring(0,2),10);
 				var t2 = parseInt(list_fin2[i].substring(0,2),10);
 				
-				while(t1 < t2){
-					var lical2 = document.createElement("li");
-					t1 = t1+1;
-					lical2.appendChild(document.createTextNode(t1 + ":00:00"+"  busy"));
-					lical2.setAttribute("class", "busy");
-					ul2.appendChild(lical2);
+				if(list_event_names2[i] == "free time"){
+					while(t1 < t2){
+						var lical2 = document.createElement("li");
+						t1 = t1+1;
+						lical2.appendChild(document.createTextNode(t1 + ":00:00"+"  free"));
+						lical2.setAttribute("class", "commonFreeTime");
+						ul2.appendChild(lical2);
+					}
+				}
+				else{
+					while(t1 < t2){
+						var lical2 = document.createElement("li");
+						t1 = t1+1;
+						lical2.appendChild(document.createTextNode(t1 + ":00:00"+"  busy"));
+						lical2.setAttribute("class", "busy");
+						ul2.appendChild(lical2);
+					}
 				}
 			}
 	  }
