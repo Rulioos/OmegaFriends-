@@ -41,6 +41,8 @@ public class AuthentificationServlet extends HttpServlet {
 			//set attribute user to session
 			User user=Database.findUserByEmail(request.getParameter("email"));
 			session.setAttribute("user",Database.findUserByEmail(request.getParameter("email")));
+			session.setAttribute("groups", Database.getAllGroups().toArray());
+			session.setAttribute("events", Database.getAllEvents().toArray());
 			request.getRequestDispatcher("/acceuil.jsp").forward(request, response);
 			
 		}else {

@@ -12,7 +12,7 @@ public class Group {
 	@Id
 	private ObjectId id;
 	private String name; // name of group
-	@Reference
+	@Embedded
 	private User owner;// owner of the group
 	@Embedded
 	private List<User> members; // list of persons

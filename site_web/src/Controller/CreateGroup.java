@@ -42,9 +42,12 @@ public class CreateGroup extends HttpServlet {
 			List<String> interests=Arrays.asList(request.getParameter("interests").split(","));
 			Register.register_group(name,user, interests);
 			session.setAttribute("user",Database.findUserByEmail(user.getEmail()) );
-			request.getRequestDispatcher("/acceuil.jsp").forward(request, response);
+			session.setAttribute("groups", Database.getAllGroups().toArray());
+			//request.getRequestDispatcher("/acceuil.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath()+ "/acceuil.jsp");
 		}else {
-			request.getRequestDispatcher("/connexion.html").forward(request, response);
+			//request.getRequestDispatcher("/connexion.html").forward(request, response);
+			response.sendRedirect(request.getContextPath()+ "/connexion.html");
 			
 		}
 	}

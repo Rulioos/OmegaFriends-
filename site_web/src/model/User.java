@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 import dev.morphia.annotations.*;
 
 @Entity("users")
+@Embedded
 public class User {
 	@Id
 	private ObjectId id;
@@ -17,9 +18,6 @@ public class User {
 	private String email;// person's email
 	private String phone;// person's phone
 	private String birthDate;// person's birthdate
-	@Embedded
-	private List<Group> groups=new ArrayList<>();//person's groups
-	@Embedded
 	private List<String> interests=new ArrayList<>();;//person's interests
 	public User() {
 		//do nothing
@@ -32,16 +30,12 @@ public class User {
 		this.surname = surname;
 		this.email = email;
 		this.birthDate = birthDate;
+		
 	}
 	
 	
 
-	public List<Group> getGroups() {
-		return groups;
-	}
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
-	}
+
 	public List<String> getInterests() {
 		return interests;
 	}

@@ -1,6 +1,8 @@
 package model;
 
 
+import java.util.List;
+
 import com.mongodb.MongoClient;
 
 
@@ -20,6 +22,10 @@ public class Database {
 		return datastore.createQuery(User.class).field("email").equal(email).first();
 	}
 	
+	@SuppressWarnings("deprecation")
+	public static List<Group> getAllGroups() {
+		return datastore.createQuery(Group.class).asList();
+	}
 	
 	public static boolean updateUser(User user,String field,Object value,String password) {
 		Query<User> q=datastore.createQuery(User.class).field("email").equal(user.getEmail());
@@ -30,5 +36,10 @@ public class Database {
 			return true;
 		}
 		return false;
+	}
+
+	public static List<Event> getAllEvents() {
+		return datastore.createQuery(Event.class).asList();
+	
 	}
 }

@@ -3,30 +3,33 @@
 <%@page import="model.Calendar"%>
 <%@page import="model.DataFowarder"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="ISO-8859-1">
-		<title>My Events</title>
-		<link rel="stylesheet" type="text/css" href="Res_event.css">
-	</head>
+<head>
+<meta charset="ISO-8859-1">
 
-	<body onload="setEvent()">
-	
-		<div id="event">
-			<ul id="calendar_ul">
-			</ul>
-			
-			<form action="/site_web//CompareCalendarServlet" method="POST">
-				<input id="input" type="submit" name="comparaison">
-			</form>
-		</div>
-	</body>	
+<title>My Events</title>
+<link rel="stylesheet" type="text/css" href="Res_event.css">
+
+</head>
+
+<body onload="setEvent()">
+	<header></header>
+	<div id="event">
+		<ul id="calendar_ul">
+		</ul>
+
+		<form action="/site_web//CompareCalendarServlet" method="POST">
+			<input id="input" type="submit" name="comparaison">
+		</form>
+	</div>
+	<footer></footer>
+</body>
 </html>
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
 	
 	function setEvent(){
@@ -117,8 +120,8 @@
 
 
 		}
-		document.getElementById("input").setAttribute("value", "Compare for " + "<%= selected_date %>");
+		document.getElementById("input").setAttribute("value", "Compare for " + "<%= selected_date %>
+	");
 
 	}
-	
-	</script>
+</script>

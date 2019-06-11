@@ -20,9 +20,12 @@
 </head>
 <%@ page import="model.User"%>
 <%@ page import="model.Group"%>
+<%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	session = request.getSession(false);
+
 	if (session.getAttribute("user") == null) {
 		response.sendRedirect("connexion.html");
 	}
@@ -45,7 +48,8 @@
 		<span
 			onclick="document.getElementById('group_modal').style.display='none'"
 			class="close" title="Close Modal">&times;</span>
-		<form class="modal-content animate" action="/site_web//CreateGroup">
+		<form class="modal-content animate" action="/site_web//CreateGroup"
+			method="POST">
 			<div class="container">
 				<label for="uname"><b>Group's name</b></label> <input class="form"
 					type="text" placeholder="Enter group's name" name="uname" required>
@@ -71,7 +75,8 @@
 		<span
 			onclick="document.getElementById('event_modal').style.display='none'"
 			class="close" title="Close Modal">&times;</span>
-		<form class="modal-content animate" action="/action_page.php">
+		<form class="modal-content animate" action="/site_web//CreateEvent"
+			method="POST">
 			<div class="container">
 				<label for="uname"><b>Event's name</b></label> <input class="form"
 					type="text" placeholder="Enter event's name" name="uname" required>
@@ -115,31 +120,10 @@
 		}
 	</script>
 
-	<!-- Groups and events-->
-	<div class="groups"></div>
-	<%
-		final User user = (User) session.getAttribute("user");
-		//out.println("<a href='acceuil.jsp'>" + user.getEmail() + "</a>");
-		/*
-		user.getGroups().stream().forEach(k -> {
-			try {
-				out.println("ho");
-			} catch (IOException ie) {
-				//
-			}
-		});
-		*/
-	%>
-	<div class="events"></div>
-
-
-
 
 
 	<!-- Tabs creation -->
 	<div class="tab">
-		<button class="tablinks" onclick="openTab(event, 'calendar')">
-			My Calendar</button>
 		<button class="tablinks" onclick="openTab(event, 'b_groups')">
 			Browse groups</button>
 		<button class="tablinks" onclick="openTab(event, 'b_events')">
@@ -148,38 +132,78 @@
 			My groups</button>
 	</div>
 
-	<div id="calendar" class="tabcontent">
-		<h3>Calendar</h3>
-	</div>
 
 	<div id="b_groups" class="tabcontent">
-		<h3>b_groups</h3>
+		<table style="width: 100%">
+			<tr>
+				<th>Nom du groupe</th>
+				<th>Créateur</th>
+				<th>Nombre de membres</th>
+				<th>Centres d'intérêts</th>
+			<tr>
+				<c:forEach items="${groups}" var="group">
+					<tr>
+						<td><c:out value="${group.getName()}" /></td>
+						<td><c:out value="${group.getOwner().getName()}" /> <c:out
+								value="${group.getOwner().getSurname()}" /></td>
+						<td><c:out value="${group.getmembers().size()}" /></td>
+						<td><c:forEach items="${group.getInterests()}" var="is">
+								<ul>
+									<li><c:out value="${is}" /></li>
+								</ul>
+
+							</c:forEach></td>
+
+					</tr>
+
+				</c:forEach>
+		</table>
+
 
 	</div>
 
 	<div id="b_events" class="tabcontent">
-		<h3>b_events</h3>
+		<table>
+			<tr>
+				<th>Nom</th>
+				<th>Nombre de participants</th>
+				<th>Adresse</th>
+				<th>Date</th>
+				<th>S'inscrire</th>
+			</tr>
+			<c:forEach items="${events}" var="event">
+					<tr>
+						<td><c:out value="${event.getName()}" /></td>
+						<td><c:out value="${event.getParticipants().size()}" /></td>
+						<td><c:out value="${event.getAdresse().Full()}" /></td>
+						<td><c:out value="${event.getDate()}" /></td>
+						<td><button  class="btn">S'inscrire</button></td>
+					</tr>
+			</c:forEach>
+
+
+		</table>
 	</div>
 
 	<div id="my_groups" class="tabcontent">
-		<h3>
-			My groups
-		</h3>
+		<table>
+			<tr>
+				<th>Nom</th>
+				<th>Nombre de membres</th>
+			</tr>
+			<c:forEach items="${groups}" var="group">
+				<c:if test="${group.getOwner().getEmail().equals(user.getEmail())}">
+					<tr style="display:inline-blocks">
+						<td><c:out value="${group.getName()}" /></td>
+						<td><c:out value="${group.getmembers().size()}" /></td>
+						<td><button style="display:inline-blocks" class="btn">Edition</button></td>
+						<td><button style="display:inline-blocks" class="btn">Invitation</button></td>
+					</tr>
+				</c:if>
+			</c:forEach>
 
-		<%
-			for (Group g : user.getGroups()) {
-		%>
-		<a href="acceuil.jsp">
-			<%
-				g.getName();
-			%>
-		</a>
 
-		<%
-			}
-		%>
-
-		<h3>Groups i'm in</h3>
+		</table>
 	</div>
 
 

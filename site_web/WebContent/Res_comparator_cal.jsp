@@ -8,12 +8,14 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
+		
 		<title>My Events</title>
 		<link rel="stylesheet" type="text/css" href="Res_comparator_cal.css">
+
 	</head>
 
 	<body onload="setEvent()">
-	
+	<header></header>
 		<div id="event">
 			<ul id="calendar_ul1" class= "calendar_ul">
 			</ul>
@@ -21,6 +23,7 @@
 			<ul id="calendar_ul2" class= "calendar_ul">
 			</ul>
 		</div>
+		<footer></footer>
 	</body>	
 </html>
 
