@@ -120,8 +120,7 @@
 
 
 		}
-		document.getElementById("input").setAttribute("value", "Compare for " + "<%= selected_date %>
-	");
+		document.getElementById("input").setAttribute("value", "Compare for " + "<%=selected_date%>");
 
 	}
 </script>
