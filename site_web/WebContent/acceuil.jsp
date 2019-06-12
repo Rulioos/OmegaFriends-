@@ -226,6 +226,6 @@
 	</script>
 
 
-	<footer> </footer>
+	
 </body>
 </html>

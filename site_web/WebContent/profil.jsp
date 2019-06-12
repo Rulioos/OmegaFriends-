@@ -43,8 +43,9 @@
 				<form method="post" action="ModifProfil">
 					<input type="hidden" name="form_type" value="mail"> <input
 						type="email" name="mail" placeholder="New email"><br>
-					<input type="password" name="password" placeholder="confirm password">
-					<input type="submit" value="Change Email" id="submit">
+					<input type="password" name="password"
+						placeholder="confirm password"> <input type="submit"
+						value="Change Email" id="submit">
 				</form>
 			<td>
 		</tr>
@@ -80,8 +81,9 @@
 				<form method="post" action="ModifProfil">
 					<input type="hidden" name="form_type" value="phone"> <input
 						type="tel" name="phone" placeholder="New phone number"><br>
-					<input type="password" name="password" placeholder="confirm password">
-					<input type="submit" value="Submit new Phone number" id="submit">
+					<input type="password" name="password"
+						placeholder="confirm password"> <input type="submit"
+						value="Submit new Phone number" id="submit">
 				</form>
 			<td>
 		</tr>
@@ -99,11 +101,18 @@
 				</form>
 			</td>
 		</tr>
+		<tr>
+			<td class="label">Add Calendar</td>
+			<td><form method="post" action="AjoutCalendar">
+					<input type="txt" name="calendarProfil"
+						placeholder="New Calendar"><br>
+			<td><input type="submit" value="Add Calendar" id="submit"></td>
+			</form></td>
+		</tr>
+
 
 	</table>
 
 
-
-	<footer></footer>
 </body>
 </html>

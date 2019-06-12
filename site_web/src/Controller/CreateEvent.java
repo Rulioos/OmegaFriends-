@@ -44,7 +44,7 @@ public class CreateEvent extends HttpServlet {
 			String num=request.getParameter("street_number");
 			String street=request.getParameter("street");
 			String country=request.getParameter("country");
-			String city=request.getParameter("country");
+			String city=request.getParameter("city");
 			String description=request.getParameter("description");
 			Adresse adresse=new Adresse(street, num, city, country);
 			List<String> interests=Arrays.asList(request.getParameter("interests").split(","));
